@@ -14,19 +14,6 @@ for (let elem of cityElems ) {
   }
 }
 
-//media
-var med = document.getElementById("media");
-  med.onclick = () => {
-    for (let elem of cityElems ) {
-      var nums = [];
-    
-      let sum = nums.reduce((previous, current) => current += previous);
-     
-    }
-    let avg = sum / nums.length;
-    document.getElementById("risposta").innerText = avg;
-  }
-
 //aggiungo una nuova città
 var add= document.getElementById("add");
 var nome = document.getElementById("nuovaC");
