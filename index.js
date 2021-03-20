@@ -27,19 +27,6 @@ var med = document.getElementById("media");
     document.getElementById("risposta").innerText = avg;
   }
 
-//aggiungo una nuova città
-var add= document.getElementById("add");
-var nome = document.getElementById("nuovaC");
-add.onclick = () => {
-  var lista = document.createElement("LI");
-  var btn = document.createElement("BUTTON");
-  btn.innerHTML = nome.value;
-  btn.classList.add("città");  
-  lista.appendChild(btn);
-  var ull = document.getElementById("citt");
-  ull.appendChild(lista);
-  btn.onclick = () => display(btn.innerHTML);
-}
 
 // Funzione collegata ai bottoni
 // "window" necessario in StackBlitz, può essere
