@@ -16,16 +16,27 @@ for (let elem of cityElems ) {
 
 //media
 var med = document.getElementById("media");
-  med.onclick = () => {
-    for (let elem of cityElems ) {
-      var nums = [];
+med.onclick = () => {
+  var request = new XMLHttpRequest(); // Costruzione dell'oggetto "request"
+  var nums = [5,8];
+  for (let elem of cityElems ) {
+     request.open(
+      "GET",
+      "https://api.openweathermap.org/data/2.5/weather?APPID=d0fda39104b3c7c45fe031a5392964c1&units=metric&q=" +
+      elem,
+       true
+    );
+    request.send();
+    request.onload = function() {
+      var dataObject = JSON.parse(request.response);
+      nums.push(dataObject.main.temp);
+    };
     
-      let sum = nums.reduce((previous, current) => current += previous);
-     
-    }
-    let avg = sum / nums.length;
-    document.getElementById("risposta").innerText = avg;
   }
+  let sum = nums.reduce((previous, current) => current += previous);
+  let avg = sum / nums.length; 
+  document.getElementById("risposta").innerText = avg;
+}
 
 
 // Funzione collegata ai bottoni
@@ -59,5 +70,3 @@ function display(city) {
   // Applico il metodo send (al termine chiamerà il callback "onload")
   request.send();
 };
-
-
