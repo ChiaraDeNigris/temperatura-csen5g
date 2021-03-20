@@ -14,12 +14,40 @@ for (let elem of cityElems ) {
   }
 }
 
+//media
+var med = document.getElementById("media");
+  med.onclick = () => {
+    for (let elem of cityElems ) {
+      var nums = [];
+    
+      let sum = nums.reduce((previous, current) => current += previous);
+     
+    }
+    let avg = sum / nums.length;
+    document.getElementById("risposta").innerText = avg;
+  }
+
+//aggiungo una nuova città
+var add= document.getElementById("add");
+var nome = document.getElementById("nuovaC");
+add.onclick = () => {
+  var lista = document.createElement("LI");
+  var btn = document.createElement("BUTTON");
+  btn.innerHTML = nome.value;
+  btn.classList.add("città");  
+  lista.appendChild(btn);
+  var ull = document.getElementById("citt");
+  ull.appendChild(lista);
+  btn.onclick = () => display(btn.innerHTML);
+}
 
 // Funzione collegata ai bottoni
 // "window" necessario in StackBlitz, può essere
 // omesso altrimenti
 function display(city) {
   var request = new XMLHttpRequest(); // Costruzione dell'oggetto "request"
+
+
 
   // Funzione callback invocata quando la request termina
   request.onload = function() {
