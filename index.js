@@ -16,26 +16,31 @@ for (let elem of cityElems ) {
 
 //media
 var med = document.getElementById("media");
-med.onclick = () => {
+med.onclick = calcoloMedia ;
+function calcoloMedia () {
+  var media = 0;
   var request = new XMLHttpRequest(); // Costruzione dell'oggetto "request"
   var nums = [5,8];
-  for (let elem of cityElems ) {
-     request.open(
-      "GET",
-      "https://api.openweathermap.org/data/2.5/weather?APPID=d0fda39104b3c7c45fe031a5392964c1&units=metric&q=" +
-      elem,
-       true
-    );
-    request.send();
-    request.onload = function() {
+  for (let c of cityElems ) {
+    let city = c.innerHTML;
+    
+    request.onload =() => {
+      if (request.status === 200) {
       var dataObject = JSON.parse(request.response);
-      nums.push(dataObject.main.temp);
+      media += dataObject.main.temp / cityElems.length;
+      document.getElementById("mediaR").innerHTML=
+      "la media è di " + media + " gradi";
     };
     
   }
-  let sum = nums.reduce((previous, current) => current += previous);
-  let avg = sum / nums.length; 
-  document.getElementById("risposta").innerText = avg;
+   request.open(
+      "GET",
+      "https://api.openweathermap.org/data/2.5/weather?APPID=d0fda39104b3c7c45fe031a5392964c1&units=metric&q=" +
+      city,
+       true
+    );
+    request.send();
+  }
 }
 
 
