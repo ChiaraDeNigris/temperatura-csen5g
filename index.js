@@ -38,16 +38,16 @@ function doCity (city, callback){
 function display(city) {
   doCity (city, function(data){
    document.getElementById("risposta").innerHTML =
-    "A " + city + " ci sono " + dataObject.main.temp + " gradi e una pressione di " + dataObject.main.pressure ;
+    "A " + city + " ci sono " + data.main.temp + " gradi e una pressione di " + data.main.pressure ;
   });
 }
       
 ;
 function media () {
   t = 0;
-  for (let c of cityElems ) {
+  for (let city of cityElems ) {
      doCity (city.innerHTML, function(data){
-      t += dataObject.main.temp / cityElems.length;
+      t += data.main.temp / cityElems.length;
       document.getElementById("mediaR").innerText= t;
     });
   }
